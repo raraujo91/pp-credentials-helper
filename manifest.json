@@ -1,0 +1,27 @@
+{
+    "manifest_version": 2,
+    "version": "1.0.0",
+
+    "name": "PayPal Integration Helper",
+    "description": "Extensão desenvolvida para gerenciamento de credenciais NVP/SOAP/REST para integrações PayPal.",
+    "author": "Renan A. Araujo",
+
+    "permissions": [
+      "tabs",
+      "storage",
+      "contextMenus",
+      "*://*.paypal.com/businessprofile/mytools/apiaccess/firstparty/signature"],
+
+    "icons": {
+      "128": "icons/icon-128.png"
+    },
+
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+
+    "browser_action": {
+   	 "default_icon": "icons/icon.png"
+    }
+}
