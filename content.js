@@ -8,6 +8,8 @@ chrome.storage.local.set({ user: user, pwd: pwd, sign: sign }, () => {
 	alert("Dados salvos!");
 });
 
-chrome.storage.local.get(['user'], function(result) {
+chrome.storage.local.get(['user', 'pwd', 'sign'], function(result) {
 	console.log("Usuário: " + result.user);
-})
+	console.log("Senha: " + result.pwd);
+	console.log("Assinatura: " + result.sign);
+});
