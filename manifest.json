@@ -10,7 +10,10 @@
       "tabs",
       "storage",
       "contextMenus",
-      "*://*.paypal.com/businessprofile/mytools/apiaccess/firstparty/signature"],
+      "activeTab",
+      "<all_urls>",
+      "file://*/"
+    ],
 
     "icons": {
       "128": "icons/icon-128.png"
