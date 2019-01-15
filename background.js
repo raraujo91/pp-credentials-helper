@@ -17,21 +17,40 @@ function onClickHandler(info, tab) {
 			sendText(result.sign);
 		});
 		break;
+
+		case 'clientID':
+		chrome.storage.local.get(['clientID'], function(result) {
+			sendText(result.clientID);
+		});
+		break;
+
+		case 'secretID':
+		chrome.storage.local.get(['secretID'], function(result) {
+			sendText(result.secretID);
+		});
+		break;
 	}
+
 }
 
 function sendText(cred){
-	chrome.tabs.executeScript({
-		code: 'var temp = document.activeElement.innerHTML; document.activeElement.innerHTML=temp + "' + cred + '";'
-	});
+	if(typeof cred == "undefined"){
+		alert("Valor não definido!");
+	} else {
+		chrome.tabs.executeScript({
+			code: 'var temp = document.activeElement.value; document.activeElement.value=temp + "' + cred + '";'
+		});
+	}
+	
 }
 
 function cleanData() {
-	chrome.storage.local.remove(['user', 'pwd', 'sign'], () => {
+	chrome.storage.local.remove(['user', 'pwd', 'sign', 'clientID', 'secretID'], () => {
  		var error = chrome.runtime.lastError;
     	if (error) {
         	console.error(error);
-    	}  	
+    	}
+    	alert("Dados removidos da extensão!")  	
 	});
 }
 
@@ -64,6 +83,26 @@ chrome.contextMenus.create({
 chrome.contextMenus.create({
 	title: "Assinatura da API",
 	id: "sign",
+	parentId: "menu",
+	contexts: ["editable"]
+});
+
+chrome.contextMenus.create({
+	type: "separator",
+	parentId: "menu",
+	contexts: ["editable"]
+});
+
+chrome.contextMenus.create({
+	title: "Client ID",
+	id: "clientID",
+	parentId: "menu",
+	contexts: ["editable"]
+});
+
+chrome.contextMenus.create({
+	title: "Secret ID",
+	id: "secretID",
 	parentId: "menu",
 	contexts: ["editable"]
 });
